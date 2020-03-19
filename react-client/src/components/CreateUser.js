@@ -65,7 +65,7 @@ function CreateUser(props) {
           </Form.Group>
           <Form.Group>
             <Form.Label>Program Name</Form.Label>
-            <Form.Control type="text" name="program" id="program"  placeholder="Enter Program Name" value={user.email} onChange={onChange} />
+            <Form.Control type="text" name="program" id="program"  placeholder="Enter Program Name" value={user.program} onChange={onChange} />
           </Form.Group>
           <Form.Group>
             <Form.Label> Student Number</Form.Label>
