@@ -29,8 +29,9 @@ function ShowUser(props) {
 
   const deleteUser = (id) => {
     setShowLoading(true);
-    const user = { firstName: data.firstName, lastName: data.lastName, 
-      email: data.email,username: data.username, password: data.password };
+    const user = {  firstName: data.firstName, lastName: data.lastName, 
+      city: data.city,phoneNumber: data.phoneNumber, email: data.email,
+      program: data.program,studentNumber: data.studentNumber, password: data.password };
   
     axios.delete(apiUrl, user)
       .then((result) => {
