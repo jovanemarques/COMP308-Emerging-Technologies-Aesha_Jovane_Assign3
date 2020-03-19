@@ -38,6 +38,7 @@ function CreateUser(props) {
       } 
       <Jumbotron>
         <Form onSubmit={saveUser}>
+        
           <Form.Group>
             <Form.Label> First Name</Form.Label>
             <Form.Control type="text" name="firstName" id="firstName" placeholder="Enter first name" value={user.firstName} onChange={onChange} />
@@ -47,12 +48,28 @@ function CreateUser(props) {
             <Form.Control type="text" name="lastName" id="lastName" placeholder="Enter last name" value={user.lastName} onChange={onChange} />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="text" name="email" id="email" rows="3" placeholder="Enter email" value={user.email} onChange={onChange} />
+            <Form.Label>Address</Form.Label>
+            <Form.Control type="text" name="address" id="address" placeholder="Enter your address" value={user.address} onChange={onChange} />
           </Form.Group>
           <Form.Group>
-            <Form.Label>User Name</Form.Label>
-            <Form.Control type="text" name="username" id="username" placeholder="Enter user name" value={user.username} onChange={onChange} />
+            <Form.Label>City</Form.Label>
+            <Form.Control type="text" name="city" id="city"  placeholder="Enter your city" value={user.city} onChange={onChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control type="text" name="phoneNumber" id="phoneNumber"  placeholder="Enter Phonenumber" value={user.phonenumber} onChange={onChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="text" name="email" id="email"  placeholder="Enter Email" value={user.email} onChange={onChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Program Name</Form.Label>
+            <Form.Control type="text" name="program" id="program"  placeholder="Enter Program Name" value={user.email} onChange={onChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label> Student Number</Form.Label>
+            <Form.Control type="text" name="studentNumber" id="studentNumber" placeholder="Enter Student name" value={user.studentnumber} onChange={onChange} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Password</Form.Label>
