@@ -11,7 +11,7 @@ function CreateUser(props) {
   city: '', phone_number: '', email: '',
   program: '',student_number: '',password: '' });
   const [showLoading, setShowLoading] = useState(false);
-  const apiUrl = "http://localhost:3000/";
+  const apiUrl = "http://localhost:3001/";
 
   const saveUser = (e) => {
     setShowLoading(true);
@@ -19,7 +19,7 @@ function CreateUser(props) {
     const data = {firstName: user.firstName, lastName: user.lastName, 
       city: user.city,phone_number: user.phone_number, email: user.email,
       program: user.program,student_number: user.student_number , password: user.password };
-    axios.post(apiUrl, data)
+    axios.post(apiUrl + 'students/', data)
       .then((result) => {
         setShowLoading(false);
         props.history.push('/show/' + result.data._id)
