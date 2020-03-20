@@ -8,7 +8,7 @@ import Login from './Login';
 function ListArticles(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/articles";
+  const apiUrl = "http://localhost:3001/courses";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +32,7 @@ function ListArticles(props) {
 
   const showDetail = (id) => {
     props.history.push({
-      pathname: '/showarticle/' + id
+      pathname: '/show/' + id
     });
   }
 
@@ -45,7 +45,7 @@ function ListArticles(props) {
           </Spinner> }
           <ListGroup>
             {data.map((item, idx) => (
-              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.title}</ListGroup.Item>
+              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.course_name}</ListGroup.Item>
             ))}
           </ListGroup>
         </div>

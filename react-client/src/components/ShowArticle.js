@@ -9,13 +9,13 @@ function ShowArticle(props) {
   console.log('props.match.params',props.match.params.id)
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/articles/" + props.match.params.id;
+  const apiUrl = "http://localhost:3001/courses/" + props.match.params.id;
 
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
       const result = await axios(apiUrl);
-      console.log('results from articles',result.data);
+      console.log('results from courses',result.data);
 
       setData(result.data);
       setShowLoading(false);
@@ -26,18 +26,19 @@ function ShowArticle(props) {
 
   const editArticle = (id) => {
     props.history.push({
-      pathname: '/editarticle/' + id
+      pathname: '/edit/' + id
     });
   };
 
   const deleteArticle = (id) => {
     setShowLoading(true);
-    const article = { title: data.title, content: data.content };
+    const article = { course_code: data.course_code, course_name: data.course_name,section: data.section,
+          semester:data.semester};
     //
     axios.delete(apiUrl, article)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/listarticles')
+        props.history.push('/list')
       }).catch((error) => setShowLoading(false));
   };
 

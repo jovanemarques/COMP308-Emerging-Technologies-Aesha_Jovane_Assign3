@@ -11,7 +11,7 @@ function EditArticle(props) {
   const [article, setArticle] = useState({ _id: '', title: '', 
   content: '' });  
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/articles/" + props.match.params.id;
+  const apiUrl = "http://localhost:3001/courses/" + props.match.params.id;
   //runs only once after the first render
   useEffect(() => {
     setShowLoading(false);
@@ -29,12 +29,14 @@ function EditArticle(props) {
   const updateArticle = (e) => {
     setShowLoading(true);
     e.preventDefault();
-    const data = { title: article.title, content: article.content};
+    const data = { course_code: article.course_code, course_name: article.course_name,
+      section: article.section,
+      semester:article.semester};
     axios.put(apiUrl, data)
       .then((result) => {
         console.log('after calling put to update',result.data )
         setShowLoading(false);
-        props.history.push('/showarticle/' + result.data._id)
+        props.history.push('/show/' + result.data._id)
       }).catch((error) => setShowLoading(false));
   };
   //runs when user enters a field
@@ -52,19 +54,27 @@ function EditArticle(props) {
       } 
       <Jumbotron>
         <Form onSubmit={updateArticle}>
-          <Form.Group>
-            <Form.Label> Title</Form.Label>
-            <Form.Control type="text" name="title" id="title" placeholder="Enter article title" value={article.title} onChange={onChange} />
-            </Form.Group>
-          <Form.Group>
-            <Form.Label> Last Name</Form.Label>
-            <Form.Control type="text" name="content" id="content" placeholder="Enter article content" value={article.content} onChange={onChange} />
-          </Form.Group>
+        <Form.Group>
+                <Form.Label> Course Code</Form.Label>
+                <Form.Control type="text" name="course_code" id="course_code" placeholder="Enter Course Code" value={article.course_code} onChange={onChange} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label> Course Name</Form.Label>
+                <Form.Control as="text" name="course_name" id="course_name" placeholder="Enter Course Name" value={article.course_name} onChange={onChange} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label> Section</Form.Label>
+                <Form.Control as="text" name="section" id="section" placeholder="Enter Course Section" value={article.section} onChange={onChange} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label> Semester</Form.Label>
+                <Form.Control as="text" name="semester" id="semester" placeholder="Enter Semester" value={article.semester} onChange={onChange} />
+              </Form.Group>
           
           
         
           <Button variant="primary" type="submit">
-            Update Article
+            Update Course
           </Button>
         </Form>
       </Jumbotron>
