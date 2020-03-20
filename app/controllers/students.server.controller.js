@@ -216,7 +216,7 @@ exports.isSignedIn = (req, res) => {
 	  return res.status(400).end()
 	}
   
-	// Finally, token is ok, return the username given in the token
+	// Finally, token is ok, return the student_number given in the token
 	res.status(200).send({ screen: payload.student_number });
 }
 
