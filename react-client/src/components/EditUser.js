@@ -11,7 +11,7 @@ function EditUser(props) {
   city:'',phone_number: '',email: '',
   program:'',student_number: '',password: '' });  
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/users/" + props.match.params.id;
+  const apiUrl = "http://localhost:3001/students/" + props.match.params.id;
   //runs only once after the first render
   useEffect(() => {
     setShowLoading(false);
@@ -29,7 +29,7 @@ function EditUser(props) {
   const updateUser = (e) => {
     setShowLoading(true);
     e.preventDefault();
-    const data = { firstName: user.firstName, lastName: user.lastName, 
+    const data = { firstName: user.firstName, lastName: user.lastName, address: user.address,
       city: user.city,phone_number: user.phone_number, email: user.email,
       program: user.program,student_number: user.student_number };
     axios.put(apiUrl, data)
@@ -79,7 +79,7 @@ function EditUser(props) {
           </Form.Group>
           <Form.Group>
             <Form.Label>Program Name</Form.Label>
-            <Form.Control type="text" name="program" id="program"  placeholder="Enter Program Name" value={user.email} onChange={onChange} />
+            <Form.Control type="text" name="program" id="program"  placeholder="Enter Program Name" value={user.program} onChange={onChange} />
           </Form.Group>
           <Form.Group>
             <Form.Label> Student Number</Form.Label>

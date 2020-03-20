@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 function ShowUser(props) {
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/users/" + props.match.params.id;
+  const apiUrl = "http://localhost:3001/Students/" + props.match.params.id;
 
   useEffect(() => {
     setShowLoading(false);
@@ -29,7 +29,7 @@ function ShowUser(props) {
 
   const deleteUser = (id) => {
     setShowLoading(true);
-    const user = {  firstName: data.firstName, lastName: data.lastName, 
+    const user = {  firstName: data.firstName, lastName: data.lastName, address: data.address, 
       city: data.city,phone_number: data.phone_number, email: data.email,
       program: data.program,student_number: data.student_number, password: data.password };
   
