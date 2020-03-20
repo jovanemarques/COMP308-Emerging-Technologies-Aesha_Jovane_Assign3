@@ -18,7 +18,7 @@ exports.create = function (req, res) {
     const course = new Course(req.body);
     //course.student = req.body.student_number;
     console.log(req.body)
-    Student.findOne({student_number: req.body.student_number}, (err, student) => {
+    Student.findOne({student_number: req.student_number}, (err, student) => {
 
         if (err) { return getErrorMessage(err); }
         //
@@ -26,7 +26,7 @@ exports.create = function (req, res) {
         console.log('student._id',req.id);
     }).then( function () 
     {
-        course.student = [...course.student, req.id]
+        course.students = [...course.students, req.id]
         console.log('req.student._id', req.id);
 
         course.save((err) => {

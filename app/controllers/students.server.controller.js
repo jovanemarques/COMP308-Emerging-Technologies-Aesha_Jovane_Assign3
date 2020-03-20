@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config/config');
 const jwtExpirySeconds = 300;
 const jwtKey =config.secretKey;
+const saltRounds = 10;
 
 //
 // Create a new error handling controller method
@@ -91,6 +92,7 @@ exports.studentByID = function (req, res, next, id) {
 //update a student by id
 exports.update = function(req, res, next) {
     console.log(req.body);
+    req.body.password = bcrypt.hashSync(req.body.password, saltRounds);
     Student.findByIdAndUpdate(req.student.id, req.body, function (err, student) {
       if (err) {
         console.log(err);
@@ -122,7 +124,7 @@ exports.authenticate = function(req, res, next) {
 			} else {
 			console.log(student)
 			//compare passwords	
-			if(bcrypt.compareSync(password, student.password)) {
+			if(student && bcrypt.compareSync(password, student.password)) {
 				// Create a new token with the student id in the payload
   				// and which expires 300 seconds after issue
 				const token = jwt.sign({ id: student._id, student_number: student.student_number }, jwtKey, 
@@ -238,7 +240,7 @@ exports.requiresLogin = function (req, res, next) {
 	  // or if the signature does not match
 	  payload = jwt.verify(token, jwtKey)
 	  console.log('in requiresLogin - payload:',payload)
-	  req.id = payload.id;
+	  req.student_number = payload.student_number;
 	} catch (e) {
 	  if (e instanceof jwt.JsonWebTokenError) {
 		// if the error thrown is because the JWT is unauthorized, return a 401 error

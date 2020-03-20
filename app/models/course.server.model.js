@@ -13,9 +13,9 @@ const CourseSchema = new Schema({
     semester: {
         type:Number
     },
-    created: {
-        type: Date,
-        default: Date.now
-    }
+    students: [{
+        type: Schema.ObjectId,
+        ref: 'Student'
+    }]
 });
 mongoose.model('Course', CourseSchema);
