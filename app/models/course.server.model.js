@@ -12,6 +12,10 @@ const CourseSchema = new Schema({
     },
     semester: {
         type:Number
-    }
+    },
+    students: [{
+        type: Schema.ObjectId,
+        ref: 'Student'
+    }]
 });
 mongoose.model('Course', CourseSchema);
