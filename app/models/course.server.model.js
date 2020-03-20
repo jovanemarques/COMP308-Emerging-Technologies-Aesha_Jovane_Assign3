@@ -12,10 +12,6 @@ const CourseSchema = new Schema({
     },
     semester: {
         type:Number
-    },
-    created: {
-        type: Date,
-        default: Date.now
     }
 });
 mongoose.model('Course', CourseSchema);
