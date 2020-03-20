@@ -13,7 +13,7 @@ function App() {
   //store input field data, user name and password
   const [student_number, setstudentNumber] = useState();
   const [password, setPassword] = useState();
-  const apiUrl = "http://localhost:3000/signin";
+  const apiUrl = "http://localhost:3001/signin";
   //send username and password to the server
   // for initial authentication
   const auth = async () => {
@@ -64,7 +64,7 @@ function App() {
     <div className="App">
       {screen === 'auth' 
         ? <div>
-          <label>Username: </label>
+          <label>Student Number: </label>
           <br/>
           <input type="text" onChange={e => setstudentNumber(e.target.value)} />
           <br/>
