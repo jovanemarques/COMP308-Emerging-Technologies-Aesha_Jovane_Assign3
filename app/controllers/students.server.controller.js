@@ -111,8 +111,8 @@ exports.delete = function(req, res, next) {
 exports.authenticate = function(req, res, next) {
 	// Get credentials from request
 	console.log(req.body)
-	const student_number = req.body.auth.student_number;
-	const password  = req.body.auth.password;
+	const student_number = req.body.student_number;
+	const password  = req.body.password;
 	console.log(password)
 	console.log(student_number)
 	//find the student with given student_number using static method findOne
@@ -216,7 +216,7 @@ exports.isSignedIn = (req, res) => {
 	  return res.status(400).end()
 	}
   
-	// Finally, token is ok, return the username given in the token
+	// Finally, token is ok, return the student_number given in the token
 	res.status(200).send({ screen: payload.student_number });
 }
 
