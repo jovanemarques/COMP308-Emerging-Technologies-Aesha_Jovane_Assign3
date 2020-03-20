@@ -9,6 +9,6 @@ module.exports = function (app) {
     //handle a get request made to root path
     app.get('/', function (req, res) {
         res.send('OK');
-    }); //go to http://localhost:3000/
+    }); //go to http://localhost:3001/
 
 };
