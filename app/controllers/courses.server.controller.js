@@ -46,11 +46,11 @@ exports.create = function (req, res) {
 //
 exports.list = function (req, res) {
     Course
-    .find
-    //().sort('-created')
-    .populate('student', 'firstName lastName fullName')
+    .find()
+    //.sort('-created')
+    .populate('students', 'firstName lastName fullName')
     .exec((err, courses) => {
-if (err) {
+    if (err) {
         return res.status(400).send({
             message: getErrorMessage(err)
         });
@@ -63,7 +63,7 @@ if (err) {
 exports.courseByID = function (req, res, next, id) {
     Course
     .findById(id)
-    .populate('student', 'firstName lastName fullName')
+    .populate('students', 'firstName lastName fullName')
     .exec((err, course) => {if (err) return next(err);
     if (!course) return next(new Error('Failed to load course '
             + id));
@@ -81,7 +81,9 @@ exports.update = function (req, res) {
     console.log('in update:', req.course)
     const course = req.course;
     course.course_code = req.body.course_code;
-    course.course_code = req.body.course_code;
+    course.course_name = req.body.course_name;
+    course.section = req.body.section;
+    course.semester = req.body.semester;
     course.save((err) => {
         if (err) {
             return res.status(400).send({
@@ -108,10 +110,10 @@ exports.delete = function (req, res) {
 //The hasAuthorization() middleware uses the req.course and req.user objects
 //to verify that the current user is the creator of the current course
 exports.hasAuthorization = function (req, res, next) {
-    console.log('in hasAuthorization - course.student: ',req.course.student)
+    console.log('in hasAuthorization - course.student: ',req.course.students)
     console.log('in hasAuthorization - student: ', req.id)
 
-    if (req.course.student.id !== req.id) {
+    if (req.course.students.filter(s => s.id === req.id).length === 0) {
         return res.status(403).send({
             message: 'Student is not authorized'
         });
