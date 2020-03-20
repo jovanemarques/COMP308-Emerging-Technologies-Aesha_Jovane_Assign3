@@ -8,8 +8,8 @@ import { withRouter } from 'react-router-dom';
 
 function EditUser(props) {
   const [user, setUser] = useState({ _id: '', firstName: '', lastName: '', address: '',
-  city:'',phoneNumber: '',email: '',
-  program:'',studentNumber: '',password: '' });  
+  city:'',phone_number: '',email: '',
+  program:'',student_number: '',password: '' });  
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/users/" + props.match.params.id;
   //runs only once after the first render
@@ -30,8 +30,8 @@ function EditUser(props) {
     setShowLoading(true);
     e.preventDefault();
     const data = { firstName: user.firstName, lastName: user.lastName, 
-      city: user.city,phoneNumber: user.phoneNumber, email: user.email,
-      program: user.program,studentNumber: user.studentNumber };
+      city: user.city,phone_number: user.phone_number, email: user.email,
+      program: user.program,student_number: user.student_number };
     axios.put(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
@@ -71,7 +71,7 @@ function EditUser(props) {
           </Form.Group>
           <Form.Group>
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="text" name="phoneNumber" id="phoneNumber"  placeholder="Enter Phonenumber" value={user.phonenumber} onChange={onChange} />
+            <Form.Control type="text" name="phone_number" id="phone_number"  placeholder="Enter Phone number" value={user.phone_number} onChange={onChange} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>
@@ -83,7 +83,7 @@ function EditUser(props) {
           </Form.Group>
           <Form.Group>
             <Form.Label> Student Number</Form.Label>
-            <Form.Control type="text" name="studentNumber" id="studentNumber" placeholder="Enter Student name" value={user.studentnumber} onChange={onChange} />
+            <Form.Control type="text" name="student_number" id="student_number" placeholder="Enter Student Number" value={user.student_number} onChange={onChange} />
           </Form.Group>
         
           <Button variant="primary" type="submit">

@@ -47,7 +47,7 @@ function List(props) {
           </Spinner> }
           <ListGroup>
             {data.map((item, idx) => (
-              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.username}</ListGroup.Item>
+              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.student_number}</ListGroup.Item>
             ))}
           </ListGroup>
         </div>
