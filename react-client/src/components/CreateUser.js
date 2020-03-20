@@ -7,16 +7,18 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
 function CreateUser(props) {
-  const [user, setUser] = useState({ _id: '', firstName: '', lastName: '', 
-                email: '',username: '',password: '' });
+  const [user, setUser] = useState({ _id: '', firstName: '', lastName: '', address: '', 
+  city: '', phone_number: '', email: '',
+  program: '',student_number: '',password: '' });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/";
 
   const saveUser = (e) => {
     setShowLoading(true);
     e.preventDefault();
-    const data = { firstName: user.firstName, lastName: user.lastName, 
-      email: user.email,username: user.username, password: user.password };
+    const data = {firstName: user.firstName, lastName: user.lastName, 
+      city: user.city,phone_number: user.phone_number, email: user.email,
+      program: user.program,student_number: user.student_number , password: user.password };
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
@@ -57,7 +59,7 @@ function CreateUser(props) {
           </Form.Group>
           <Form.Group>
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="text" name="phoneNumber" id="phoneNumber"  placeholder="Enter Phonenumber" value={user.phonenumber} onChange={onChange} />
+            <Form.Control type="text" name="phone_number" id="phone_number"  placeholder="Enter Phone Number" value={user.phone_number} onChange={onChange} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>
@@ -69,7 +71,7 @@ function CreateUser(props) {
           </Form.Group>
           <Form.Group>
             <Form.Label> Student Number</Form.Label>
-            <Form.Control type="text" name="studentNumber" id="studentNumber" placeholder="Enter Student name" value={user.studentnumber} onChange={onChange} />
+            <Form.Control type="text" name="student_number" id="student_number" placeholder="Enter Student Number" value={user.student_number} onChange={onChange} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Password</Form.Label>
